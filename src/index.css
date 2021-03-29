@@ -1,8 +1,9 @@
 body {
   margin: 0;
+  font-family: "Digital", monospace;
 }
 
 @font-face {
-  font-family: "Digital";
+  font-family: "Digital", monospace;
   src: url(./fonts/Digital-7Mono.woff) format("woff");
 }
