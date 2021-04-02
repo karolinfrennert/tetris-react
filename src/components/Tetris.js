@@ -16,13 +16,13 @@ import { mockComponent } from "react-dom/test-utils";
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
-  const [player] = usePlayer();
+  const { updatePlayerPos, player, resetPlayer } = usePlayer();
   const [stage, setStage] = useStage(player);
 
   console.log("Rerendered");
 
-  const movePlayer = (direction) => {
-    updatePlayerPos({ x: direction, y: 0 });
+  const movePlayer = (dir) => {
+    updatePlayerPos({ x: dir, y: 0 });
   };
 
   const startGame = () => {
@@ -64,7 +64,7 @@ const Tetris = () => {
               <Display text="Level" />
             </div>
           )}
-          <StartButton onClick={startGame} />
+          <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
