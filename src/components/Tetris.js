@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createStage } from "../gameHelpers";
+import { createStage, checkCollision } from "../gameHelpers";
 
 //components
 import Display from "./Display";
@@ -22,7 +22,9 @@ const Tetris = () => {
   console.log("Rerendered");
 
   const movePlayer = (dir) => {
-    updatePlayerPos({ x: dir, y: 0 });
+    if (!checkCollision(player, stage, { x: dir, y: 0 })) {
+      updatePlayerPos({ x: dir, y: 0 });
+    }
   };
 
   const startGame = () => {
