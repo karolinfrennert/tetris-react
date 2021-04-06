@@ -16,7 +16,7 @@ import { mockComponent } from "react-dom/test-utils";
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
-  const { updatePlayerPos, player, resetPlayer } = usePlayer();
+  const { updatePlayerPos, player, resetPlayer, playerRotate } = usePlayer();
   const [stage, setStage] = useStage(player, resetPlayer);
 
   console.log("Rerendered");
@@ -57,6 +57,8 @@ const Tetris = () => {
         movePlayer(1);
       } else if (keyCode === 40) {
         dropPlayer();
+      } else if (keyCode === 38) {
+        playerRotate(stage, 1);
       }
     }
   };
