@@ -9,6 +9,7 @@ import StartButton from "./StartButton";
 import { StyledTetris, StyledTetrisWrapper } from "./styles/StyledTetris";
 
 //custom hooks
+import { useInterval } from "../hooks/useInterval";
 import { usePlayer } from "../hooks/usePlayer";
 import { useStage } from "../hooks/useStage";
 import { mockComponent } from "react-dom/test-utils";
@@ -29,7 +30,9 @@ const Tetris = () => {
 
   const startGame = () => {
     setStage(createStage());
+    setDropTime(1000);
     resetPlayer();
+    setGameOver(false);
   };
 
   const drop = () => {
@@ -62,6 +65,10 @@ const Tetris = () => {
       }
     }
   };
+
+  useInterval(() => {
+    drop();
+  }, dropTime);
 
   return (
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={(e) => move(e)}>
